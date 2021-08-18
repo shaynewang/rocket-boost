@@ -5,12 +5,15 @@ using UnityEngine;
 public class ProcessInput : MonoBehaviour
 {
     Rigidbody rb;
+    AudioSource audioSource;
     [SerializeField] float ThrustAmount = 10000;
     [SerializeField] float RotationAmount = 200;
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
     }
 
     // Update is called once per frame
@@ -23,10 +26,8 @@ public class ProcessInput : MonoBehaviour
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.D)){
-            Debug.Log("Pressed D");
             ApplyRotation(true);
         } else if (Input.GetKey(KeyCode.A)){
-            Debug.Log("Pressed A");
             ApplyRotation(false);
         }
     }
@@ -36,8 +37,15 @@ public class ProcessInput : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("pressed up");
             rb.AddRelativeForce(Vector3.up * ThrustAmount * Time.deltaTime);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            audioSource.Play();
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            audioSource.Pause();
         }
     }
 
