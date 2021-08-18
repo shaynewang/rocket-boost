@@ -23,7 +23,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         isTransitioning = false;
         disableCollision = false;
-        GetComponent<Renderer>().enabled = true;
+        //GetComponent<Renderer>().enabled = true;
     }
 
     void Update() {
