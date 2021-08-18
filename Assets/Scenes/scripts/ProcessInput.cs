@@ -8,6 +8,7 @@ public class ProcessInput : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] float ThrustAmount = 10000;
     [SerializeField] float RotationAmount = 200;
+    [SerializeField] AudioClip thrustSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,7 @@ public class ProcessInput : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            audioSource.Pause();
+            audioSource.Stop();
         }
     }
 
