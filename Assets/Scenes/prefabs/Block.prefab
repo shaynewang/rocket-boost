@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3428796999635959562}
   - component: {fileID: 3428796999635959563}
   - component: {fileID: 3428796999635959560}
+  - component: {fileID: 283418143}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2b954bc183aa8194f8c91f6bcfc5fdd3, type: 2}
+  - {fileID: 2100000, guid: 7a2ebe4046d697047ae1ef3c9251f31a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,8 +109,23 @@ Rigidbody:
   m_Mass: 999999
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &283418143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3428796999635959561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e066fc5210a9e343b21a6b729473dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  movingSeconds: 5
+  direction: 

@@ -322,6 +322,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/Scenes/scripts/CollisionHandler.cs"
+"Assets/Scenes/scripts/MovingBlocks.cs"
 "Assets/Scenes/scripts/ProcessInput.cs"
 -langversion:8.0
 
