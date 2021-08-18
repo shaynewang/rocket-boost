@@ -8,6 +8,7 @@ public class CollisionHandler : MonoBehaviour
     int currentSceneIndex;
     AudioSource audioSource;
     bool isTransitioning;
+    bool disableCollision;
 
     [SerializeField] float LoadDelay = 1f;
     [SerializeField] AudioClip crashSound;
@@ -16,16 +17,20 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] ParticleSystem crashParticles;
     [SerializeField] ParticleSystem successParticles;
 
-
-
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         audioSource = GetComponent<AudioSource>();
         isTransitioning = false;
+        disableCollision = false;
+        GetComponent<Renderer>().enabled = true;
+    }
+
+    void Update() {
+        ProcessDebug();
     }
     private void OnCollisionEnter(Collision other) {
-        if(!isTransitioning)
+        if(!isTransitioning && !disableCollision)
         {
             switch (other.gameObject.tag)
             {
@@ -46,6 +51,26 @@ public class CollisionHandler : MonoBehaviour
     {
         GetComponent<ProcessInput>().enabled = false;
     }
+
+    void HideRocket()
+    {
+        Renderer[] rs = GetComponentsInChildren<Renderer>();
+        foreach(Renderer r in rs) {
+            if (r.tag == "RocketBody")
+            {
+              r.enabled = false;
+            }
+        }
+    }
+    void InvokeParticles(ParticleSystem particles, bool hide_rocket=false)
+    {
+        if (hide_rocket)
+        {
+            HideRocket();
+        }
+        particles.Play();
+    }
+
     void StartCrashSequence()
     {
         // TODO: add partical effect
@@ -53,13 +78,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
         FreezeInput();
-        InvokeParticles(crashParticles);
+        InvokeParticles(crashParticles, hide_rocket: true);
         Invoke("ReloadLevel", LoadDelay);
-    }
-
-    void InvokeParticles(ParticleSystem particles)
-    {
-        particles.Play();
     }
 
     void StartLandingSequence()
@@ -85,5 +105,17 @@ public class CollisionHandler : MonoBehaviour
             nextSceneIndex = 0;
         }
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    void ProcessDebug()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        } else if (Input.GetKeyDown(KeyCode.C))
+        {
+            // Toggle disable collision
+            disableCollision = !disableCollision;
+        }
     }
 }
