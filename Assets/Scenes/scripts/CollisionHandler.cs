@@ -13,6 +13,10 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip crashSound;
     [SerializeField] AudioClip successSound;
 
+    [SerializeField] ParticleSystem crashParticles;
+    [SerializeField] ParticleSystem successParticles;
+
+
 
     void Start()
     {
@@ -49,7 +53,13 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
         FreezeInput();
+        InvokeParticles(crashParticles);
         Invoke("ReloadLevel", LoadDelay);
+    }
+
+    void InvokeParticles(ParticleSystem particles)
+    {
+        particles.Play();
     }
 
     void StartLandingSequence()
@@ -58,6 +68,7 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(successSound);
         FreezeInput();
+        InvokeParticles(successParticles);
         Invoke("LoadNextLevel", LoadDelay);
     }
 

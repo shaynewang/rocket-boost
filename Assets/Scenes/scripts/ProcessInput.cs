@@ -9,6 +9,10 @@ public class ProcessInput : MonoBehaviour
     [SerializeField] float ThrustAmount = 10000;
     [SerializeField] float RotationAmount = 200;
     [SerializeField] AudioClip thrustSound;
+    [SerializeField] ParticleSystem mainBoosterParticles;
+    [SerializeField] ParticleSystem leftBoosterParticles;
+    [SerializeField] ParticleSystem rightBoosterParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +32,19 @@ public class ProcessInput : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D)){
             ApplyRotation(true);
+            if(!leftBoosterParticles.isPlaying)
+            {
+                leftBoosterParticles.Play();
+            }
         } else if (Input.GetKey(KeyCode.A)){
             ApplyRotation(false);
+            if(!rightBoosterParticles.isPlaying)
+            {
+                rightBoosterParticles.Play();
+            }
+        } else {
+            rightBoosterParticles.Stop();
+            leftBoosterParticles.Stop();
         }
     }
 
@@ -43,18 +58,22 @@ public class ProcessInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             audioSource.Play();
+            mainBoosterParticles.Play();
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
             audioSource.Stop();
+            mainBoosterParticles.Stop();
         }
     }
 
     void ApplyRotation(bool forward)
     {
         // freeze rotation to manually rotate
+        // forward is right
         rb.freezeRotation = true;
         float RotationAmt = RotationAmount;
+        // rotation to left
         if (!forward) {
             RotationAmt = - RotationAmt;
         }
