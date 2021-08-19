@@ -324,6 +324,7 @@
 "Assets/Scenes/scripts/CollisionHandler.cs"
 "Assets/Scenes/scripts/Oscillation.cs"
 "Assets/Scenes/scripts/ProcessInput.cs"
+"Assets/Scenes/scripts/QuitGame.cs"
 "Assets/Scenes/scripts/Rotator.cs"
 -langversion:8.0
 
