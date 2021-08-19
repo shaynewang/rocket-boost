@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3428796999635959562}
   - component: {fileID: 3428796999635959563}
   - component: {fileID: 3428796999635959560}
-  - component: {fileID: 283418143}
+  - component: {fileID: 2099976964}
+  - component: {fileID: 4168365341418526621}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -112,9 +113,9 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &283418143
+--- !u!114 &2099976964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +124,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3428796999635959561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e066fc5210a9e343b21a6b729473dd5, type: 3}
+  m_Script: {fileID: 11500000, guid: a698fc9b5f128c541b6c2c208c545550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  movingSeconds: 5
-  direction: 
+  movementVector: {x: 0, y: 10, z: 0}
+  movementFactor: 0
+  period: 4
+--- !u!114 &4168365341418526621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3428796999635959561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5898fd284aaac1648b3e3d4ca1438c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotation: 
+  rotationSpeed: 0
