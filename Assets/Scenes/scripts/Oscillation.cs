@@ -25,6 +25,10 @@ public class Oscillation : MonoBehaviour
     {
         if (!movementVector.Equals(Vector3.zero))
         {
+            // If period is really small
+            if (period <= Mathf.Epsilon) {
+                return;
+            }
             float cycles = Time.time / period;
             float sine = Mathf.Sin(cycles * tau);
             movementFactor = (sine + 1f) / 2f;
